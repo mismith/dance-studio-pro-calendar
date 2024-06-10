@@ -1,10 +1,11 @@
 {
   "name": "dance-studio-pro-calendar-functions",
-  "description": "Cloud Functions for Dance Studio Pro Calendar",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "TZ='UTC' firebase emulators:start --only functions"
+    "dev": "TZ='UTC' firebase emulators:start --only functions",
+    "postinstall": "node node_modules/puppeteer/install.mjs",
+    "gcp-build": "node node_modules/puppeteer/install.mjs"
   },
   "dependencies": {
     "firebase-admin": "^12.1.0",
@@ -12,9 +13,6 @@
     "ical-generator": "^7.1.0",
     "puppeteer": "^22.10.0",
     "scrape-it": "^6.1.2"
-  },
-  "engines": {
-    "node": "20"
   },
   "private": true
 }

@@ -1,7 +1,7 @@
 process.env.DEBUG = true;
 
 import fs from 'fs/promises';
-import { loadHtml, parseHtml, generateCalendar } from './functions/ical.mjs';
+import { loadHtml, parseHtml, generateCalendar } from './functions/ical.js';
 
 const ID = ``;
 

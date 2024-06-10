@@ -1,6 +1,5 @@
 {
   "name": "dance-studio-pro-calendar",
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "TZ='UTC' nodemon . --ignore 'data/*'"
