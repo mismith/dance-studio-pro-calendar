@@ -11,5 +11,8 @@
     "ical-generator": "^7.1.0",
     "puppeteer": "^22.10.0",
     "scrape-it": "^6.1.2"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.11.2"
   }
 }
