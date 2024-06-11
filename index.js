@@ -1,7 +1,10 @@
 process.env.DEBUG = true;
 
+import dotenv from 'dotenv';
 import fs from 'fs/promises';
 import { loadHtml, parseHtml, generateCalendar } from './functions/ical.js';
+
+dotenv.config({ path: 'functions/.env' });
 
 const ID = ``;
 
@@ -23,4 +26,4 @@ if (process.env.DEBUG) {
 }
 
 const calendar = await generateCalendar(data);
-console.log(calendar.toString());
+console.log(calendar.toString(), calendar.timezone());

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import puppeteer from 'puppeteer';
 import scrapeIt from 'scrape-it';
 import ical from 'ical-generator';
@@ -100,6 +101,7 @@ export async function parseHtml(html) {
 export async function generateCalendar(data) {
   const cal = ical({
     name: data.title || 'Dance Studio Pro Classes',
+    timezone: process.env.TZ,
   });
 
   for (const event of data.classes) {
