@@ -13,9 +13,29 @@
       ".cache"
     ]
   },
+  "hosting": {
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "/classes.json",
+        "function": {
+          "functionId": "classesJson"
+        }
+      },
+      {
+        "source": "/classes.ics",
+        "function": {
+          "functionId": "classesIcs"
+        }
+      }
+    ]
+  },
   "emulators": {
     "functions": {
       "port": 5001
+    },
+    "hosting": {
+      "port": 5005
     },
     "ui": {
       "enabled": true

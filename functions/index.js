@@ -1,16 +1,27 @@
-import { setGlobalOptions } from 'firebase-functions/v2';
 import { onRequest, } from "firebase-functions/v2/https";
 
 import { loadHtml, parseHtml, generateCalendar } from "./ical.js";
 
-setGlobalOptions({ memory: '1GiB', timeoutSeconds: 240 });
+// TODO: cache
+export const classesJson = onRequest(async(request, response) => {
+  response.setHeader('Content-Type', 'application/json; charset=utf-8');
 
-export const ical = onRequest(async(request, response) => {
-  const html = await loadHtml(request.query.id);
+  try {
+    const html = await loadHtml(new URLSearchParams(request.query));
+    const data = await parseHtml(html);
+
+    response.send(JSON.stringify(data));
+  } catch (error) {
+    response.send(JSON.stringify({ error: error.message }));
+  }
+});
+
+export const classesIcs = onRequest(async(request, response) => {
+  response.setHeader('Content-Type', 'text/calendar; charset=utf-8');
+
+  const html = await loadHtml(new URLSearchParams(request.query));
   const data = await parseHtml(html);
   const calendar = await generateCalendar(data);
 
-  response.setHeader('Content-Type', 'text/calendar; charset=utf-8');
-  response.setHeader('Content-Disposition', 'attachment; filename="calendar.ics"');
   response.send(calendar.toString());
 });

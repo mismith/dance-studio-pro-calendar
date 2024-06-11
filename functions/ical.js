@@ -5,17 +5,19 @@ import ical from 'ical-generator';
 
 const BASE_URL = 'https://dancestudio-pro.com';
 
-export async function loadHtml(id) {
+export async function loadHtml(query) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto(`${BASE_URL}/apps/api_classes.php?id=${id}`);
-  const html = await new Promise((resolve) => page.on('response', async(response) => {
-    const request = response.request();
-    if (request.url().includes('api_classes-ajax.php')){
-    const text = await response.text();
-      resolve(text)
-    }
-  }));
+  await page.goto(`${BASE_URL}/apps/api_classes.php?${query.toString()}`);
+
+  const element = await page.waitForSelector('body');
+  const body = await element.evaluate(el => el.textContent);
+  if (!body) {
+    throw new Error('Not found')
+  }
+
+  const response = await page.waitForResponse((response) => response.url().includes('api_classes-ajax.php'));
+  const html = await response.text();
   await browser.close()
 
   return html

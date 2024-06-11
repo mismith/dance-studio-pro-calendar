@@ -3,12 +3,19 @@ const DEBUG = false;
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
 import { URLSearchParams } from 'url';
+import parseArgs from 'minimist'
 import { loadHtml, parseHtml, generateCalendar } from '../ical.js';
 
 dotenv.config({ path: '../.env' });
 
+const args = parseArgs(process.argv.slice(2))
+if (!args.id) {
+  console.error('Usage: npm run dev:ical -- --id=1234567890');
+  process.exit(1);
+}
+
 const query = new URLSearchParams({
-  id: '',
+  id: args.id,
 });
 
 const html = DEBUG

@@ -2,7 +2,9 @@
   "name": "dance-studio-pro-calendar-functions",
   "type": "module",
   "main": "index.js",
+  "private": true,
   "scripts": {
+    "dev:ical": "nodemon ./bin/ical.js --ignore ./bin/data",
     "dev": "firebase emulators:start --only functions",
     "postinstall": "node node_modules/puppeteer/install.mjs",
     "gcp-build": "node node_modules/puppeteer/install.mjs"
@@ -15,5 +17,8 @@
     "puppeteer": "^22.10.0",
     "scrape-it": "^6.1.2"
   },
-  "private": true
+  "devDependencies": {
+    "minimist": "^1.2.8",
+    "nodemon": "^3.1.3"
+  }
 }

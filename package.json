@@ -2,12 +2,9 @@
   "name": "dance-studio-pro-calendar",
   "type": "module",
   "scripts": {
-    "dev": "nodemon . --ignore 'data/*'"
+    "dev": "firebase emulators:start"
   },
   "devDependencies": {
     "firebase-tools": "^13.11.2"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5"
   }
 }
