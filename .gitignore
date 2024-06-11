@@ -24,5 +24,6 @@ dist-ssr
 *.sw?
 
 # Custom
+/functions/bin/data
 .firebase
-/data
+.cache

@@ -1,16 +1,9 @@
 {
-  "name": "dsp-scraper",
+  "name": "dance-studio-pro-calendar",
   "version": "0.0.0",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "TZ='UTC' nodemon . --ignore 'data/*'"
-  },
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.12",
-    "ical-generator": "^7.1.0",
-    "puppeteer": "^22.10.0",
-    "scrape-it": "^6.1.2"
   },
   "devDependencies": {
     "firebase-tools": "^13.11.2"

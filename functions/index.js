@@ -1,18 +1,14 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import { onRequest, } from "firebase-functions/v2/https";
 
-import { onRequest } from "firebase-functions/v2/https";
+import { loadHtml, parseHtml, generateCalendar } from "./ical.mjs";
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
 
-exports.ical = onRequest((request, response) => {
-  logger.info(request.query.id);
-  response.send("Hello from Firebase!");
+export const ical = onRequest(async(request, response) => {
+  const html = await loadHtml(request.query.id);
+  const data = await parseHtml(html);
+  const calendar = await generateCalendar(data);
+
+  response.setHeader('Content-Type', 'text/calendar; charset=utf-8');
+  response.setHeader('Content-Disposition', 'attachment; filename="calendar.ics"');
+  response.send(calendar.toString());
 });
