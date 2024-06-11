@@ -2,7 +2,8 @@
   "name": "dance-studio-pro-calendar",
   "type": "module",
   "scripts": {
-    "dev": "firebase emulators:start"
+    "dev": "firebase emulators:start",
+    "deploy": "firebase deploy"
   },
   "devDependencies": {
     "firebase-tools": "^13.11.2"

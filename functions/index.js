@@ -1,8 +1,10 @@
+import { setGlobalOptions } from 'firebase-functions/v2';
 import { onRequest, } from "firebase-functions/v2/https";
 
 import { loadHtml, parseHtml, generateCalendar } from "./ical.js";
 
-// TODO: cache
+setGlobalOptions({ memory: '1GiB', timeoutSeconds: 60 });
+
 export const classesJson = onRequest(async(request, response) => {
   response.setHeader('Content-Type', 'application/json; charset=utf-8');
 

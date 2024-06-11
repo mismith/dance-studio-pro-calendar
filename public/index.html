@@ -5,9 +5,19 @@
   <title>Dance Studio Pro Calendar</title>
 </head>
 <body>
+  <p>Follow <a href="https://dancestudiopro.zendesk.com/hc/en-us/articles/4405468839565-How-do-I-show-Live-Schedule-of-my-classes-on-my-website" target="_blank">these steps</a> to get your Live Schedule link.</p>
+  <p>e.g. <code>https://dancestudio-pro.com/apps/api_classes.php?id=<mark>abc123def456ghi789etc</mark></code></p>
+  <p>...then use that id in the following URLs:</p>
   <ul>
-    <li><a href="/classes.json?id=">/classes.json?id=&lt;id&gt;</a></li>
-    <li><a href="/classes.ics?id=">/classes.ics?id=&lt;id&gt;</a></li>
+    <li><a href="/classes.json?id="><output></output>/classes.json?id=&lt;id&gt;</a></li>
+    <li><a href="/classes.ics?id="><output></output>/classes.ics?id=&lt;id&gt;</a></li>
   </ul>
+  <p>You can also <a href="https://dancestudio-pro.com/apps/settings_api_classes.php" target="_blank">configure</a> the data in Dance Studio Pro.</p>
+
+  <script>
+    document.querySelectorAll('output').forEach(output => {
+      output.textContent = window.location.origin
+    })
+  </script>
 </body>
 </html>
