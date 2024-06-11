@@ -20,6 +20,7 @@ export const classesJson = onRequest(async(request, response) => {
 
 export const classesIcs = onRequest(async(request, response) => {
   response.setHeader('Content-Type', 'text/calendar; charset=utf-8');
+  response.setHeader('Content-Disposition', 'attachment; filename="classes.ics"');
 
   const html = await loadHtml(new URLSearchParams(request.query));
   const data = await parseHtml(html);
